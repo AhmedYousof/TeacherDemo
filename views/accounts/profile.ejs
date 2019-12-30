@@ -1,0 +1,66 @@
+<% layout('layout') -%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-5">
+            <img src="<%= user.profile.picture %>" alt="profile pic" class="img-circle img-responsive img-center">
+            <br>
+            <p><h2 class="text-centet text-danger">Profile</h2>
+            <h4 class="text-success-"><%= user.profile.name %> </h4></p>
+            <hr>
+            <p><h4 class="text-primary">Email: <%= user.email %></h4></p>
+            <p><h4 class="text-primary">Role: <%= user.role %></h4></p>
+
+
+                <% if(user.address === '' || typeof user.address === 'undefined') { %>
+
+                    <p><h4 >Address: </h4><span class="text-warning">You have no Address ..   <a href="/edit-profile" class="btn btn-sm btn-danger">add your address</a></span></p
+            <% } else { %>
+
+                <p><h4 class="text-primary">Address: <%= user.address %></h4></p>
+
+            <% } %>
+            <%if(user.role == "student"&& user.subjects !=""){ %>
+                <p><h4 >Subject: </h4><span class="text-warning"><%= user.subjects %></span></p
+
+                    <%}%>
+                <% if(user.role=="teacher") {%>
+                 <% if(user.sallary === '' || typeof user.sallary === 'undefined') { %>
+                    <p><h4 >Sallary: </h4><span class="text-warning">You have no Sallary  <a href="/edit-profile" class="btn btn-sm btn-danger">add your sallary</a></span></p>
+                    
+                <% } else { %>
+        
+                    <p><h4 class="text-primary">Sallary: <%= user.sallary %>$</h4></p>
+        
+                <% } %>
+        
+                <% if(user.subjects == "" || typeof user.subjects === 'undefined') { %>
+        
+                    <p><h4 >Subject: </h4><span class="text-warning">You have no specific Subject </span></p
+                <% } else { %>
+        
+                <p><h4 class="text-primary">Subject: <%= user.subjects %></h4></p>
+        
+            <% } %>
+                <%} %>
+            
+<hr>
+            <a href="/edit-profile" class="btn btn-primary btn-lg"> Edit Profile</a>
+        </div>
+        <%if(user.role == "teacher"){%>
+            <div class="col-sm-6 col-md-5 mt-5 pt-5">
+                <h3 class="text-success">You have <%= user.students.length %> students</h3>
+                <h1><a href="/notifaction/<%= user._id %>">Check your Students!</a></h1>
+
+            </div>
+            <%}%>
+            <%if(user.role == "student"){%>
+                <div class="col-sm-6 col-md-5 mt-5 pt-5">
+                    <h3 class="text-success">You have <%= user.courses.length %> courses</h3>
+                    <h1><a href="/courses-list/<%=user._id%>">Check your courses!</a></h1>
+    
+                </div>
+                <%}%>
+    </div>
+</div>
+

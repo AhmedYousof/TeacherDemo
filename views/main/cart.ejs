@@ -1,0 +1,160 @@
+<% layout('layout') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <% if(message.length > 0) { %>
+      <div class="alert alert-success alert-dismissible">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="close"
+        >
+          &times;
+        </button>
+        <%= message %>
+      </div>
+      <%} %> <%if(user.role == "student"){%>
+      <div class="col-lg-8">
+        <h1 class="text-primary">Wishlist :</h1>
+        <h3 class="m-3 p-3">
+          <a href="/courses-list/<%=user._id%>" class="text-warning"
+            >Go to your Courses</a
+          >
+        </h3>
+      </div>
+      <% for (let i = 0 ; i< foundCart.courses.length; i++) { %>
+      <div class="list-group listshadow p-2">
+        <span class="list-group-item list-group-item-action">
+          <div class="row">
+            <div class="col-md-3">
+              <span
+                ><img
+                  src="<%= foundCart.courses[i].course.profile.picture %>"
+                  class="product-image"
+              /></span>
+            </div>
+
+            <div class="col-md-6">
+              <h2>
+                <p class="list-group-item-heading ">
+                  <%= foundCart.courses[i].course.profile.name %>
+                </p>
+              </h2>
+            </div>
+
+            <div class="col-md-3">
+              <h4><p><%= foundCart.courses[i].course.subjects%></p></h4>
+
+              <p><%= foundCart.courses[i].price%>$</p>
+              <form
+                action="/notifaction/<%=foundCart.courses[i].course._id%>"
+                method="POST"
+                class="form-group"
+              >
+                <input
+                  type="hidden"
+                  name="student_id"
+                  value="<%= user._id %>"
+                />
+                <input
+                  type="hidden"
+                  name="student_name"
+                  value="<%= user.profile.name %>"
+                />
+                <input
+                  type="hidden"
+                  name="student_pic"
+                  value="<%= user.profile.picture  %>"
+                />
+                <input
+                  type="hidden"
+                  name="student_address"
+                  value="<%= user.address  %>"
+                />
+                <input
+                  type="hidden"
+                  name="subject"
+                  value="<%= foundCart.courses[i].course.subjects %>"
+                />
+                <input
+                  type="hidden"
+                  name="teacher_id"
+                  value="<%= foundCart.courses[i].course._id %>"
+                />
+                <input
+                  type="hidden"
+                  name="teacher_name"
+                  value="<%= foundCart.courses[i].course.profile.name %>"
+                />
+                <input
+                  type="hidden"
+                  name="teacher_sallary"
+                  value="<%= foundCart.courses[i].course.sallary %>"
+                />
+                <input
+                  type="hidden"
+                  name="teacher_address"
+                  value="<%= foundCart.courses[i].course.address %>"
+                />
+                <input
+                  type="hidden"
+                  name="teacher_subject"
+                  value="<%= foundCart.courses[i].course.subjects %>"
+                />
+                <input
+                  type="hidden"
+                  name="item"
+                  value="<%=foundCart.courses[i]._id%>"
+                />
+                <button type="submit" class="btn btn-success">
+                  Join Course
+                </button>
+              </form>
+              <form method="post" action="/remove" class="form-group">
+                <input
+                  type="hidden"
+                  name="item"
+                  value="<%= foundCart.courses[i]._id %>"
+                />
+                <input
+                  type="hidden"
+                  name="price"
+                  value="<%= foundCart.courses[i].price %>"
+                />
+
+                <button type="submit" class="btn btn-danger">remove</button>
+              </form>
+
+              <!--
+              <form method="POST" action="/add-waitings">
+                <input
+                  type="hidden"
+                  name="student"
+                  value="<%= foundCart.courses[i]._id %>"
+                />
+                <input
+                  type="hidden"
+                  name="price"
+                  value="<%= foundCart.courses[i].price %>"
+                />
+                <button type="submit" class="btn btn-primary">Add</button>
+              </form>-->
+            </div>
+          </div>
+        </span>
+      </div>
+      <% }%>
+    </div>
+    <% } else {%>
+    <div class="col-lg-12 m-5 p-5 ">
+      <h1>
+        <a href="/notifaction/<%= user._id %>" class="text-primary"
+          >Go to your students List ..</a
+        >
+      </h1>
+    </div>
+    <%}%>
+  </div>
+</div>

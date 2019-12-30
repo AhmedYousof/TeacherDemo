@@ -1,0 +1,48 @@
+<% layout('layout') %>
+
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1 class="display-3 text-center">Learn smart , Save Time</h1>
+    <p class="text-center">Find your Favourite teacher...</p>
+    <div class="row">
+      <div class="col-sm-11">
+        <div class="input-group listshadow">
+          <input
+            type="text"
+            id="search"
+            class="form-control input-lg"
+            placeholder="Search For a teacher.."
+            name="search-term"
+          />
+          <span class="input-group-btn mr-2"
+            ><button type="submit" class="btn btn-primary btn-lg">
+              <i class="fab fa-searchengin"></i></button
+          ></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row" id="searchResults">
+      <% for( let i = 0 ; i<users.length; i++) { %>
+        <% if(users[i].role == "teacher") {%>
+          <div class="col-md-4">
+              <a href="/product/<%= users[i]._id %>">
+                  <div class="card listshadow">
+                      <img class="" src="<%=users[i].profile.picture %>" style="width: 95%;"></a>
+                      <div class="card-body">
+                          <h3 class="card-text"><%= users[i].profile.name %></h3>
+                          <p class="card-text"><%= users[i].subjects %></p>
+                          <p class="card-text"><%= users[i].sallary %>$</p>
+                          <a href="/product/<%= users[i]._id %>" class="btn btn-primary">Reserve now</a>
+                      </div>
+                  </div>
+              
+          </div>
+          <% } %>
+          <% } %>
+
+          
+  </div>

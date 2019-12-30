@@ -1,0 +1,44 @@
+<% layout('layout') %>
+
+<div class="container-fluid">  
+  <table class="table listshadow">
+    <thead class="thead ">
+      <tr  class="" style="font-size:22px; padding: 5px;">
+        <th >Courses List for: <span class="text-primary ml-2  " style="font-size: 24px;"><%= student.profile.name %></span> </th>
+      </tr>
+    </thead>
+  </table>
+  <table class="table listshadow">
+    <thead class="thead ">
+      <tr  class="table-danger" style="font-size:22px; padding: 5px;">
+      </tr>
+    </thead>
+  </table>
+<table class="table ">
+    <thead class="thead-light">
+      <tr>
+        <th>Teacher Name</th>
+        <th>Subject</th>
+        <th> Address</th>
+        <th> price</th>
+        <th> Register date</th>
+      </tr>
+    </thead>
+    <tbody class="listshadow">
+      <%for(let i = 0; i<student.courses.length; i++){%>
+      <tr>
+        <td><%= student.courses[i].name %></td>
+        <td><%= student.courses[i].subject %></td>
+        <td><%= student.courses[i].address %></td>
+        <td><%= student.courses[i].price %>$</td>
+        <td><%= student.courses[i].date %></td>
+      </tr>
+      <%}%>
+       <tr>
+         <td style="font-weight: 700;">Total prices:</td>
+         <td class="text-warning" style="font-weight: 700;"> <%= student.total %></td>
+       </tr> 
+    </tbody>
+  </table>
+</div>
+   

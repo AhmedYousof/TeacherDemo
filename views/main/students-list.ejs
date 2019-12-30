@@ -1,0 +1,47 @@
+<% layout('layout') %>
+
+<% if(teacher.email == user.email){ %>
+<div class="container-fluid">  
+  <table class="table listshadow">
+    <thead class="thead ">
+      <tr  class="" style="font-size:22px; padding: 5px;">
+        <th >Students List for Mr: <span class="text-primary ml-2  " style="font-size: 24px;"><%= teacher.profile.name %></span> </th>
+      </tr>
+    </thead>
+  </table>
+<table class="table ">
+    <thead class="thead-light">
+      <tr>
+        <th>Student Name</th>
+        <th>Subject</th>
+        <th> unregister </th>
+        <th> Address</th>
+        <th> Register date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%for(let i = 0; i<teacher.students.length; i++){%>
+      <tr>
+        <td><%= teacher.students[i].name %></td>
+        <td><%= teacher.students[i].subject %></td>
+        <td><form action="/remove-student" method="POST">
+          <input type="hidden" name="item" value="<%= teacher.students[i]._id %>">
+          <button type="submit" class="btn btn-danger fas fa-minus circle"></button>
+       </form></td>
+        <td><%= teacher.students[i].address %></td>
+        <td><%= teacher.students[i].date %></td>
+
+
+      </tr>
+      <%}%>
+    </tbody>
+  </table>
+</div>
+<%}else{%>
+  <div class="container-fluid">
+    <h1 class="text-anger">
+      Page Not Found!
+    </h1>
+    <a href="/"> <h3>Bact to home</h3></a>
+  </div>
+  <%}%>

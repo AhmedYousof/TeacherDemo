@@ -1,0 +1,44 @@
+<% layout('layout') -%>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Learn smart , Save Time</h1>
+    <p>Starting point to create something more unique ..</p>
+    <% if(!user){ %>
+    <p>
+      <a class="btn btn-primary btn-lg" href="/signup" role="button"
+        >Sign Up &raquo;</a
+      >
+    </p>
+    <% } %>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <% for(let i = 0; i < users.length ;i++) { %>
+    <!-- users here !!!!!! -->
+    <% if(users[i].role == "teacher") { %>
+    <div class="col-md-4">
+      <div class="card">
+        <img class="" src="<%= users[i].profile.picture%>" />
+        <form method="GET" name="" action="/reserve/<%=users[i]._id%>">
+          <div class="card-body">
+            <h3 class="card-text"><%= users[i].profile.name %></h3>
+            <p class="card-text">Sallary: <%= users[i].sallary%>$</p>
+            <p class="card-text">Address: <%= users[i].address%></p>
+            <p class="card-text">Subject: <%= users[i].subjects%></p>
+            <% if(user) { %>
+            <button type="submit" class="btn btn-primary">Reserve</button>
+            <%}%> <% if(!user){ %>
+            <a href="/signup" class="btn btn-primary">Signup to reserve </a>
+            <%}%>
+          </div>
+        </form>
+      </div>
+    </div>
+    <% }%> <% } %>
+  </div>
+</div>
+<hr />
