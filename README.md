@@ -1,3 +1,3 @@
 # TeacherDemo
 
-Run : node server
+Run By using command:  node server
