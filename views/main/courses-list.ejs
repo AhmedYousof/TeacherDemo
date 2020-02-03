@@ -27,16 +27,16 @@
     <tbody class="listshadow">
       <%for(let i = 0; i<student.courses.length; i++){%>
       <tr>
-        <td><%= student.courses[i].name %></td>
-        <td><%= student.courses[i].subject %></td>
-        <td><%= student.courses[i].address %></td>
-        <td><%= student.courses[i].price %>$</td>
-        <td><%= student.courses[i].date %></td>
+        <td><b><%= student.courses[i].name %></b></td>
+        <td><h5><%= student.courses[i].subject %></h5></td>
+        <td><h5><%= student.courses[i].address %></h5></td>
+        <td><h5><%= student.courses[i].price %>$</h5></td>
+        <td class="text-danger"><%= student.courses[i].date %></td>
       </tr>
       <%}%>
        <tr>
-         <td style="font-weight: 700;">Total prices:</td>
-         <td class="text-warning" style="font-weight: 700;"> <%= student.total %></td>
+         <td><b>Total prices:</b></td>
+         <td class="text-warning"><h4><b><%= student.total %></b></h4></td>
        </tr> 
     </tbody>
   </table>

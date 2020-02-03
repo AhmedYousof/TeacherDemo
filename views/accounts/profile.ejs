@@ -20,12 +20,9 @@
                 <p><h4 class="text-primary">Address: <%= user.address %></h4></p>
 
             <% } %>
-            <%if(user.role == "student"&& user.subjects !=""){ %>
-                <p><h4 >Subject: </h4><span class="text-warning"><%= user.subjects %></span></p
-
-                    <%}%>
+            
                 <% if(user.role=="teacher") {%>
-                 <% if(user.sallary === '' || typeof user.sallary === 'undefined') { %>
+                 <% if(user.sallary === '' || typeof user.sallary === undefined) { %>
                     <p><h4 >Sallary: </h4><span class="text-warning">You have no Sallary  <a href="/edit-profile" class="btn btn-sm btn-danger">add your sallary</a></span></p>
                     
                 <% } else { %>
@@ -34,7 +31,7 @@
         
                 <% } %>
         
-                <% if(user.subjects == "" || typeof user.subjects === 'undefined') { %>
+                <% if(user.subjects == "" || typeof user.subjects === undefined) { %>
         
                     <p><h4 >Subject: </h4><span class="text-warning">You have no specific Subject </span></p
                 <% } else { %>
